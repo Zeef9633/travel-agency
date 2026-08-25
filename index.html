@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
 <link rel="stylesheet" href="style.css?v=1">
 </head>
 <body>
@@ -177,7 +178,7 @@ var fan=document.getElementById('fan');
 function par(){
   if(!RM&&scrollY<900){
     if(hb) hb.style.transform='translate3d(0,'+(scrollY*.16).toFixed(1)+'px,0)';
-    if(fan) fan.style.transform='rotate(-11deg) translate3d('+(scrollY*.05).toFixed(1)+'px,'+(scrollY*.24).toFixed(1)+'px,0)';
+    if(fan) fan.style.transform='translateY(calc(-50% + '+(scrollY*.18).toFixed(1)+'px)) rotate(-10deg)';
   }
   tk=false;
 }

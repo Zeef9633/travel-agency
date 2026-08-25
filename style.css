@@ -164,40 +164,39 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
    radial-gradient(ellipse 60% 70% at 18% 26%,rgba(20,121,94,.5),transparent 62%),
    linear-gradient(135deg,#08301F 0%,#0B3D2E 46%,#12503C 100%);}
 
-/* tilted photo fan — right side only, bleeds off frame */
-.hero-fan{position:absolute;top:0;right:-8%;width:72%;height:100%;z-index:1;
-  display:flex;align-items:center;justify-content:flex-end;
-  transform:rotate(-11deg) scale(1.28);transform-origin:65% 50%;
-  will-change:transform;pointer-events:none}
-@media(max-width:1080px){.hero-fan{width:86%;right:-20%;opacity:.6}}
-@media(max-width:760px){.hero-fan{width:128%;right:-40%;opacity:.38;transform:rotate(-11deg) scale(1.2)}}
+/* tilted photo fan — fixed sizing, predictable at any viewport */
+.hero-fan{position:absolute;top:50%;right:-4%;z-index:1;
+  width:min(1180px,84%);height:min(760px,118%);
+  transform:translateY(-50%) rotate(-10deg);
+  display:flex;align-items:center;justify-content:flex-end;gap:0;
+  pointer-events:none;will-change:transform}
+@media(max-width:1180px){.hero-fan{right:-16%;width:100%;opacity:.7}}
+@media(max-width:860px){.hero-fan{right:-34%;width:130%;opacity:.42}}
 
-/* stagger uses translateY (resolves against the element's OWN height) */
-.hf{position:relative;flex:0 0 19.5%;height:62%;margin-left:-2%;
+.hf{position:relative;flex:0 0 clamp(150px,15vw,224px);
+  height:clamp(300px,44vh,470px);margin-left:-34px;
   transform:translateY(var(--sy,0));
   border-radius:18px;overflow:hidden;
-  background:linear-gradient(160deg,#155C44,#0A3527);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:-28px 0 56px -24px rgba(0,0,0,.8);
-  filter:saturate(.66) brightness(.78)}
+  background:linear-gradient(160deg,#175F47,#0A3527);
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:-26px 0 52px -22px rgba(0,0,0,.78);
+  filter:saturate(.66) brightness(.8)}
 .hf:first-child{margin-left:0}
-.hf:nth-child(1){--sy:-13%}
-.hf:nth-child(2){--sy:9%}
-.hf:nth-child(3){--sy:-7%}
-.hf:nth-child(4){--sy:13%}
-.hf:nth-child(5){--sy:-4%}
+.hf:nth-child(1){--sy:-52px}
+.hf:nth-child(2){--sy:34px}
+.hf:nth-child(3){--sy:-28px}
+.hf:nth-child(4){--sy:48px}
+.hf:nth-child(5){--sy:-16px}
 
-/* inner layer carries the pointer drift, so the stagger is never overwritten */
 .hf-i{position:absolute;inset:0;transition:transform 1s var(--swift);will-change:transform}
 .hf img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 45%);
   opacity:0;transition:opacity .9s ease}
 .hf img.ready{opacity:1}
-/* always-visible fallback so a missing photo never leaves a blank panel */
 .hf-mono{position:absolute;inset:0;display:grid;place-items:center;
-  font-size:clamp(18px,2vw,30px);font-weight:800;color:rgba(255,255,255,.16);letter-spacing:-.03em}
+  font-size:26px;font-weight:800;color:rgba(255,255,255,.18);letter-spacing:-.03em}
 .hf.has-img .hf-mono{opacity:0}
 .hf::after{content:'';position:absolute;inset:0;z-index:2;
-  background:linear-gradient(200deg,rgba(8,48,31,.3),rgba(8,48,31,.7))}
+  background:linear-gradient(200deg,rgba(8,48,31,.28),rgba(8,48,31,.66))}
 
 /* scrim: guarantees the headline sits on a clean field */
 .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -225,8 +224,9 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
 
 /* line reveal */
 .rl{display:block;overflow:hidden}
-.rl>span{display:block;transform:translateY(105%);transition:transform .9s var(--swift)}
-.rl.in>span{transform:none}
+.rl>span{display:block}
+.js .rl>span{transform:translateY(105%);transition:transform .9s var(--swift)}
+.js .rl.in>span{transform:none}
 .rl:nth-child(2)>span{transition-delay:.08s}
 
 /* ── ENQUIRY WIDGET ── */
@@ -473,8 +473,8 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
 
 .wa svg{width:27px;height:27px;color:#fff}
 
-.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .7s var(--swift)}
-.rv.in{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .7s var(--swift)}
+.js .rv.in{opacity:1;transform:none}
 
 /* ═══════════════ MOBILE ═══════════════ */
 @media(max-width:900px){
