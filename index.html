@@ -41,7 +41,7 @@
 <main id="main">
 <header class="hero">
   <div class="hero-bg" id="hbg"></div>
-  <div class="hero-fan" id="fan" aria-hidden="true"><span class="hf"><img data-img="makkah" style="--pos:50% 45%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="istanbul" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="dubai" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="kuala-lumpur" style="--pos:50% 40%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="baku" style="--pos:50% 48%" alt="" loading="eager" decoding="async" width="600" height="800"></span></div>
+  <div class="hero-fan" id="fan" aria-hidden="true"><span class="hf"><span class="hf-i"><img data-img="makkah" style="--pos:50% 45%" alt="" loading="eager" decoding="async" width="600" height="800"><span class="hf-mono">MM</span></span></span><span class="hf"><span class="hf-i"><img data-img="istanbul" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"><span class="hf-mono">IS</span></span></span><span class="hf"><span class="hf-i"><img data-img="dubai" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"><span class="hf-mono">DB</span></span></span><span class="hf"><span class="hf-i"><img data-img="kuala-lumpur" style="--pos:50% 40%" alt="" loading="eager" decoding="async" width="600" height="800"><span class="hf-mono">KL</span></span></span><span class="hf"><span class="hf-i"><img data-img="baku" style="--pos:50% 48%" alt="" loading="eager" decoding="async" width="600" height="800"><span class="hf-mono">BK</span></span></span></div>
   <div class="hero-scrim"></div>
   <div class="hero-in"><div class="wrap"><div class="hero-c">
     <span class="eb">Licensed travel agency · Saudi Arabia</span>
@@ -152,7 +152,7 @@
       img.src='img/'+name+'.'+EXT[n++];
     }
     img.addEventListener('error',next);
-    img.addEventListener('load',function(){img.classList.add('ready');var p=img.closest('.pan,.rc');if(p)p.classList.add('has-img');});
+    img.addEventListener('load',function(){img.classList.add('ready');var p=img.closest('.pan,.rc,.hf');if(p)p.classList.add('has-img');});
     next();
   });
 })();
@@ -205,7 +205,7 @@ if(HOVER&&!RM){
   var fan=document.getElementById('fan'),hero=document.querySelector('.hero');
   if(!fan||!hero||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var panes=[].slice.call(fan.querySelectorAll('.hf'));
+  var panes=[].slice.call(fan.querySelectorAll('.hf-i'));
   hero.addEventListener('pointermove',function(e){
     var r=hero.getBoundingClientRect();
     var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
