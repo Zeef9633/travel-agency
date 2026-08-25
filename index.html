@@ -40,7 +40,8 @@
 
 <main id="main">
 <header class="hero">
-  <div class="hero-bg" id="hbg"><img data-img="hero" style="--pos:50% 45%" alt="" fetchpriority="high" decoding="async" width="2000" height="1200"></div>
+  <div class="hero-bg" id="hbg"></div>
+  <div class="hero-fan" id="fan" aria-hidden="true"><span class="hf"><img data-img="makkah" style="--pos:50% 45%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="istanbul" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="dubai" style="--pos:50% 42%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="kuala-lumpur" style="--pos:50% 40%" alt="" loading="eager" decoding="async" width="600" height="800"></span><span class="hf"><img data-img="baku" style="--pos:50% 48%" alt="" loading="eager" decoding="async" width="600" height="800"></span></div>
   <div class="hero-scrim"></div>
   <div class="hero-in"><div class="wrap"><div class="hero-c">
     <span class="eb">Licensed travel agency · Saudi Arabia</span>
@@ -172,7 +173,14 @@ document.querySelectorAll('.rl').forEach(function(l,n){setTimeout(function(){l.c
 
 /* hero parallax */
 var hb=document.getElementById('hbg'),tk=false;
-function par(){ if(hb&&!RM&&scrollY<820) hb.style.transform='translate3d(0,'+(scrollY*.3).toFixed(1)+'px,0)'; tk=false; }
+var fan=document.getElementById('fan');
+function par(){
+  if(!RM&&scrollY<900){
+    if(hb) hb.style.transform='translate3d(0,'+(scrollY*.16).toFixed(1)+'px,0)';
+    if(fan) fan.style.transform='rotate(-11deg) translate3d('+(scrollY*.05).toFixed(1)+'px,'+(scrollY*.24).toFixed(1)+'px,0)';
+  }
+  tk=false;
+}
 addEventListener('scroll',function(){if(!tk){requestAnimationFrame(par);tk=true}},{passive:true});
 
 /* MAGNETIC — no transition while tracking, spring on release */
@@ -190,6 +198,26 @@ if(HOVER&&!RM){
     });
   });
 }
+
+
+/* hero fan: slow pointer drift for depth (pointer devices only) */
+(function(){
+  var fan=document.getElementById('fan'),hero=document.querySelector('.hero');
+  if(!fan||!hero||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var panes=[].slice.call(fan.querySelectorAll('.hf'));
+  hero.addEventListener('pointermove',function(e){
+    var r=hero.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    panes.forEach(function(p,i){
+      var d=(i+1)/panes.length;
+      p.style.transform='translate3d('+(x*-16*d).toFixed(1)+'px,'+(y*-12*d).toFixed(1)+'px,0)';
+    });
+  });
+  hero.addEventListener('pointerleave',function(){
+    panes.forEach(function(p){p.style.transform='translate3d(0,0,0)'});
+  });
+})();
 
 /* nav */
 var mn=document.getElementById('mnav'),hm=document.getElementById('ham'),hx=document.getElementById('hamx');
