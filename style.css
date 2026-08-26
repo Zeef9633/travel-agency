@@ -173,7 +173,7 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
   transform:translateY(-50%) rotate(var(--tilt));
   transform-origin:50% 50%;
   display:flex;align-items:stretch;gap:3px;    /* hairline separations */
-  background:#06261A;                          /* shows through the gaps */
+  background:#0A3527;                          /* shows through the gaps */
   pointer-events:none}
 @media(max-width:1180px){.hero-fan{right:-24%;width:96%}}
 @media(max-width:860px){.hero-fan{right:-46%;width:140%;opacity:.5}}
@@ -181,7 +181,7 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
 /* slats: no radius, no shadow — this is a surface, not a row of cards */
 .hf{position:relative;flex:1 1 0;min-width:0;overflow:hidden;
   background:linear-gradient(170deg,#1A6A4E,#0A3527);
-  filter:saturate(.95) brightness(1.06)}
+  filter:saturate(1.04) brightness(1.16)}
 .hf-i{position:absolute;inset:0}
 .hf img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 45%);
   opacity:0;transition:opacity .9s ease}
@@ -191,19 +191,19 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
   transform:rotate(calc(var(--tilt) * -1))}    /* counter-rotate so it reads upright */
 .hf.has-img .hf-mono{opacity:0}
 .hf::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(190deg,rgba(6,38,25,.06),rgba(6,38,25,.24))}
+  background:linear-gradient(190deg,rgba(6,38,25,0),rgba(6,38,25,.12))}
 
 /* scrim: holds the text side solid, dissolves into the photo band */
 .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
    linear-gradient(92deg,
      rgba(6,38,25,1) 0%,
-     rgba(6,38,25,.98) 24%,
-     rgba(6,38,25,.82) 37%,
-     rgba(6,38,25,.42) 50%,
-     rgba(6,38,25,.12) 66%,
-     rgba(6,38,25,.14) 100%),
-   linear-gradient(to bottom,rgba(6,38,25,.42) 0%,transparent 16%,transparent 70%,rgba(6,38,25,.6) 100%);}
+     rgba(6,38,25,.97) 22%,
+     rgba(6,38,25,.74) 35%,
+     rgba(6,38,25,.30) 48%,
+     rgba(6,38,25,.02) 62%,
+     rgba(6,38,25,.04) 100%),
+   linear-gradient(to bottom,rgba(6,38,25,.34) 0%,transparent 14%,transparent 74%,rgba(6,38,25,.5) 100%);}
 @media(max-width:860px){
   .hero-scrim{background:
    linear-gradient(to bottom,rgba(6,38,25,.92) 0%,rgba(6,38,25,.84) 45%,rgba(6,38,25,.95) 100%);}
