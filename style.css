@@ -164,39 +164,46 @@ h1,h2,h3{line-height:1.1;font-weight:800;letter-spacing:-.028em}
    radial-gradient(ellipse 60% 70% at 18% 26%,rgba(20,121,94,.5),transparent 62%),
    linear-gradient(135deg,#08301F 0%,#0B3D2E 46%,#12503C 100%);}
 
-/* tilted photo slats — full-height, narrow, static */
-.hero-fan{position:absolute;top:50%;right:-6%;z-index:1;
-  width:min(1020px,72%);height:150%;
-  transform:translateY(-50%) rotate(-10deg);
-  display:flex;align-items:stretch;justify-content:flex-end;gap:14px;
+/* tilted photo band — leans RIGHT, covers the right half edge-to-edge */
+.hero-fan{position:absolute;top:50%;right:-14%;z-index:1;
+  width:82%;height:200%;                       /* oversized so the tilt never exposes a corner */
+  transform:translateY(-50%) rotate(10deg);
+  transform-origin:50% 50%;
+  display:flex;align-items:stretch;gap:3px;    /* hairline separations */
+  background:#06261A;                          /* shows through the gaps */
   pointer-events:none}
-@media(max-width:1180px){.hero-fan{right:-18%;width:88%;opacity:.72}}
-@media(max-width:860px){.hero-fan{right:-40%;width:132%;opacity:.4;gap:10px}}
+@media(max-width:1180px){.hero-fan{right:-24%;width:96%}}
+@media(max-width:860px){.hero-fan{right:-46%;width:140%;opacity:.5}}
 
-.hf{position:relative;flex:0 0 clamp(84px,8.6vw,132px);
-  border-radius:14px;overflow:hidden;
+/* slats: no radius, no shadow — this is a surface, not a row of cards */
+.hf{position:relative;flex:1 1 0;min-width:0;overflow:hidden;
   background:linear-gradient(170deg,#1A6A4E,#0A3527);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:-20px 0 44px -22px rgba(0,0,0,.8);
-  filter:saturate(.68) brightness(.82)}
+  filter:saturate(.72) brightness(.86)}
 .hf-i{position:absolute;inset:0}
 .hf img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 45%);
   opacity:0;transition:opacity .9s ease}
 .hf img.ready{opacity:1}
 .hf-mono{position:absolute;inset:0;display:grid;place-items:center;
-  font-size:20px;font-weight:800;color:rgba(255,255,255,.2);letter-spacing:-.02em}
+  font-size:19px;font-weight:800;color:rgba(255,255,255,.18);letter-spacing:-.02em;
+  transform:rotate(-10deg)}                    /* counter-rotate so it reads upright */
 .hf.has-img .hf-mono{opacity:0}
-.hf::after{content:'';position:absolute;inset:0;z-index:2;
-  background:linear-gradient(200deg,rgba(8,48,31,.24),rgba(8,48,31,.62))}
+.hf::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(190deg,rgba(6,38,25,.2),rgba(6,38,25,.5))}
 
-/* scrim: guarantees the headline sits on a clean field */
+/* scrim: holds the text side solid, dissolves into the photo band */
 .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-   linear-gradient(96deg,rgba(6,38,25,.97) 0%,rgba(6,38,25,.93) 30%,rgba(6,38,25,.66) 52%,rgba(6,38,25,.28) 74%,rgba(6,38,25,.42) 100%),
-   linear-gradient(to bottom,rgba(6,38,25,.55) 0%,transparent 22%,transparent 62%,rgba(6,38,25,.75) 100%);}
-@media(max-width:760px){
+   linear-gradient(92deg,
+     rgba(6,38,25,1) 0%,
+     rgba(6,38,25,.99) 26%,
+     rgba(6,38,25,.86) 40%,
+     rgba(6,38,25,.55) 54%,
+     rgba(6,38,25,.30) 70%,
+     rgba(6,38,25,.34) 100%),
+   linear-gradient(to bottom,rgba(6,38,25,.5) 0%,transparent 18%,transparent 66%,rgba(6,38,25,.7) 100%);}
+@media(max-width:860px){
   .hero-scrim{background:
-   linear-gradient(to bottom,rgba(6,38,25,.9) 0%,rgba(6,38,25,.82) 45%,rgba(6,38,25,.94) 100%);}
+   linear-gradient(to bottom,rgba(6,38,25,.92) 0%,rgba(6,38,25,.84) 45%,rgba(6,38,25,.95) 100%);}
 }
 /* fine grain so the field isn't a flat wash */
 .hero::after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
